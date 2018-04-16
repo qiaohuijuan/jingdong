@@ -1,0 +1,22 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><title>Document</title><link rel="stylesheet" href="./css/swiper-3.4.2.min.css"><link rel="stylesheet" href="css/style.css"><link rel="stylesheet" href="fonts/iconfont.css"></head><body><div class="wrap"><header><a href="javascript:;">X | 京东购物</a> <i class="iconfont icon-gongzuo"></i></header><section><div class="top"><div class="search"><i class="iconfont icon-gengduo-2"></i><p><i class="iconfont icon-fangdajing"></i> <input type="text" placeholder="钓鱼竿"></p></div><div class="swiper-container banner"><div class="swiper-wrapper"><div class="swiper-slide"><img src="imgs/3.png" alt="" srcset=""></div><div class="swiper-slide"><img src="imgs/3.png" alt="" srcset=""></div><div class="swiper-slide"><img src="imgs/3.png" alt="" srcset=""></div></div></div></div><ul class="list"><li class="first"></li><li class="second"></li></ul><img src="imgs/1.png" alt="" srcset=""><div class="bottom"><p><a href="javascript:;">我的</a> <span>购物头条</span></p><dl><dt><h1><img src="imgs/5.png" alt="">京东天气管家</h1><p>您所在的城市太干燥啦，奉上保湿大福利！戳这里 ></p></dt><dd><img src="imgs/4.png" alt=""></dd></dl></div></section><footer><ol class="footer"><li class="bg"><i class="iconfont icon-shouye"></i>首页</li><li><i class="iconfont icon-youku"></i>微选</li><li><i class="iconfont icon-tianbiao"></i>购物圈</li><li><i class="iconfont icon-reddit"></i>购物中心</li><li><i class="iconfont icon-wode"></i>个人中心</li></ol></footer></div><script src="js/jquery-3.1.1.min.js"></script><script src="js/swiper-3.4.2.min.js"></script><script>new Swiper('.banner', {
+            autoplay: 1000,
+            loop: true
+        })
+        $.ajax({
+            url: '/newdata',
+            success: function(data) {
+                var data = JSON.parse(data);
+                var html = '<li>';
+                data.first.forEach(function(item, index) {
+                    html += ` <dl><dt><i class='iconfont ${item.icon}'></i></dt><dd>${item.tit}</dd></dl>`;
+                })
+                html += '</li>'
+                $('.first').html(html);
+                var str = '<li>';
+                data.second.forEach(function(item, index) {
+                    str += ` <dl><dt><i class='iconfont ${item.icon}'></i></dt><dd>${item.tit}</dd></dl>`;
+                })
+                str += '</li>'
+                $('.second').html(str);
+            }
+        })</script></body></html>
